@@ -1,0 +1,2 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: Le répertoire intermédiaire (x64\Debug\) contient des fichiers partagés provenant d'un autre projet (Fulgine 11.vcxproj). Cela peut entraîner un comportement de nettoyage et de regénération incorrect.
+  Aisen 11.vcxproj -> C:\Users\Fulbion\source\repos\3D Engine\Fulgine 11\bin\x64\Debug\Aisen 11.exe

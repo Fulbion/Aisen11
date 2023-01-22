@@ -1,0 +1,71 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: Le répertoire intermédiaire (x64\Debug\) contient des fichiers partagés provenant d'un autre projet (Fulgine 11.vcxproj). Cela peut entraîner un comportement de nettoyage et de regénération incorrect.
+  AppWindow.cpp
+C:\Users\Fulbion\source\repos\3D Engine\Fulgine 11\src\src\App\AppWindow.cpp(84,70): warning C4244: 'argument' : conversion de 'float' en 'T', perte possible de données
+          with
+          [
+              T=int
+          ]
+C:\Users\Fulbion\source\repos\3D Engine\Fulgine 11\src\src\App\AppWindow.cpp(84,55): warning C4244: 'argument' : conversion de 'float' en 'T', perte possible de données
+          with
+          [
+              T=int
+          ]
+C:\Users\Fulbion\source\repos\3D Engine\Fulgine 11\src\src\App\AppWindow.cpp(180,26): warning C4244: '=' : conversion de 'DWORD' en 'float', perte possible de données
+C:\Users\Fulbion\source\repos\3D Engine\Fulgine 11\src\src\App\AppWindow.cpp(244,70): warning C4244: 'argument' : conversion de 'float' en 'T', perte possible de données
+          with
+          [
+              T=int
+          ]
+C:\Users\Fulbion\source\repos\3D Engine\Fulgine 11\src\src\App\AppWindow.cpp(244,55): warning C4244: 'argument' : conversion de 'float' en 'T', perte possible de données
+          with
+          [
+              T=int
+          ]
+C:\Users\Fulbion\source\repos\3D Engine\Fulgine 11\src\include\Engine\Math\Matrix4x4.hpp(154,16): warning C4244: 'initialisation' : conversion de 'double' en 'float', perte possible de données
+C:\Users\Fulbion\source\repos\3D Engine\Fulgine 11\src\include\Engine\Math\Matrix4x4.hpp(153,1): message : pendant la compilation de la fonction membre classe modèle 'void Matrix4x4<float>::setPrespectiveFovLH(T,T,T,T)'
+          with
+          [
+              T=float
+          ]
+C:\Users\Fulbion\source\repos\3D Engine\Fulgine 11\src\src\App\AppWindow.cpp(73,37): message : voir la référence à l'instanciation de la fonction modèle 'void Matrix4x4<float>::setPrespectiveFovLH(T,T,T,T)' en cours de compilation
+          with
+          [
+              T=float
+          ]
+C:\Users\Fulbion\source\repos\3D Engine\Fulgine 11\src\include\App\AppWindow.hpp(73,19): message : voir la référence à l'instanciation classe modèle 'Matrix4x4<float>' en cours de compilation
+C:\Users\Fulbion\source\repos\3D Engine\Fulgine 11\src\include\Engine\Math\Matrix4x4.hpp(106,40): warning C4244: '=' : conversion de 'double' en 'T', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\Users\Fulbion\source\repos\3D Engine\Fulgine 11\src\include\Engine\Math\Matrix4x4.hpp(81,1): message : pendant la compilation de la fonction membre classe modèle 'void Matrix4x4<float>::inverse(void)'
+C:\Users\Fulbion\source\repos\3D Engine\Fulgine 11\src\src\App\AppWindow.cpp(58,21): message : voir la référence à l'instanciation de la fonction modèle 'void Matrix4x4<float>::inverse(void)' en cours de compilation
+C:\Users\Fulbion\source\repos\3D Engine\Fulgine 11\src\include\Engine\Math\Matrix4x4.hpp(107,40): warning C4244: '=' : conversion de 'double' en 'T', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\Users\Fulbion\source\repos\3D Engine\Fulgine 11\src\include\Engine\Math\Matrix4x4.hpp(108,40): warning C4244: '=' : conversion de 'double' en 'T', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\Users\Fulbion\source\repos\3D Engine\Fulgine 11\src\include\Engine\Math\Matrix4x4.hpp(109,40): warning C4244: '=' : conversion de 'double' en 'T', perte possible de données
+          with
+          [
+              T=float
+          ]
+  ConstantBuffer.cpp
+  DeviceContext.cpp
+  GraphicsEngine.cpp
+  IndexBuffer.cpp
+  PixelShader.cpp
+  RenderSystem.cpp
+  SwapChain.cpp
+  VertexBuffer.cpp
+  VertexShader.cpp
+  InputSystem.cpp
+  Window.cpp
+  main.cpp
+  Génération de code en cours...
+  Fulgine 11.vcxproj -> C:\Users\Fulbion\source\repos\3D Engine\Fulgine 11\bin\x64\Debug\Aisen 11.exe
