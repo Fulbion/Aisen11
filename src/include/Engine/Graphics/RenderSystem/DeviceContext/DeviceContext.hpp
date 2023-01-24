@@ -24,7 +24,7 @@ public:
 
 private:
 	ID3D11DeviceContext* m_deviceContext;
-	RenderSystemPtr m_system = nullptr;
+	RenderSystem* m_system = nullptr;
 
 	friend class ConstantBuffer;
 };

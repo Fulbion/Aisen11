@@ -13,7 +13,7 @@ public:
 
 private:
 	ID3D11Buffer* m_buffer;
-	RenderSystemPtr m_system = nullptr;
+	RenderSystem* m_system = nullptr;
 
 	friend class DeviceContext;
 };

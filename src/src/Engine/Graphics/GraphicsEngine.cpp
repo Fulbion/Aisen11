@@ -2,31 +2,40 @@
 
 #include "Engine/Graphics/GraphicsEngine.hpp"
 
+GraphicsEngine* GraphicsEngine::m_engine = nullptr;
+
 GraphicsEngine::GraphicsEngine()
 {
+	m_renderSystem = new RenderSystem();
+	m_textureManager = new TextureManager();
 }
 
 GraphicsEngine::~GraphicsEngine()
 {
-}
-
-bool GraphicsEngine::init()
-{
-	m_renderSystem = new RenderSystem();
-	m_renderSystem->init();
-	return true;
-}
-
-bool GraphicsEngine::release()
-{
-	m_renderSystem->release();
+	delete m_textureManager;
 	delete m_renderSystem;
-	return true;
+}
+
+void GraphicsEngine::create()
+{
+	if (!GraphicsEngine::m_engine) return;
+	GraphicsEngine::m_engine = new GraphicsEngine();
+}
+
+void GraphicsEngine::release()
+{
+	if (!GraphicsEngine::m_engine) return;
+	delete GraphicsEngine::m_engine;
 }
 
 RenderSystem* GraphicsEngine::getRenderSystem()
 {
 	return m_renderSystem;
+}
+
+TextureManager* GraphicsEngine::getTextureManager()
+{
+	return m_textureManager;
 }
 
 GraphicsEngine* GraphicsEngine::get()

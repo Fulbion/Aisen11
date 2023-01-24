@@ -85,9 +85,9 @@ void AppWindow::onCreate()
 
 	InputSystem::get()->addListener(this);
 	InputSystem::get()->showCursor(false);
-
-	GraphicsEngine::get()->init();
 	
+	TexturePtr m_brickTexture = GraphicsEngine::get()->getTextureManager()->createTextureFromFile(L"resources/images/textures/brick.png");
+
 	RECT rc = this->getClientWindowRect();
 	m_swapChain = GraphicsEngine::get()->getRenderSystem()->createSwapChain(this->m_hwnd, rc.right - rc.left, rc.bottom - rc.top);
 
@@ -135,13 +135,13 @@ void AppWindow::onCreate()
 
 	void* shaderByteCode = nullptr;
 	size_t sizeShader = 0;
-	GraphicsEngine::get()->getRenderSystem()->compileVertexShader(L"res/shaders/VertexShader.hlsl", "vsmain", &shaderByteCode, &sizeShader);
+	GraphicsEngine::get()->getRenderSystem()->compileVertexShader(L"resources/shaders/VertexShader.hlsl", "vsmain", &shaderByteCode, &sizeShader);
 
 	m_vs = GraphicsEngine::get()->getRenderSystem()->createVertexShader(shaderByteCode, sizeShader);
 	m_vb = GraphicsEngine::get()->getRenderSystem()->createVertexBuffer(vertexList, sizeof(Vertex), sizeList, shaderByteCode, sizeShader);
 	GraphicsEngine::get()->getRenderSystem()->releaseCompiledShader();
 
-	GraphicsEngine::get()->getRenderSystem()->compilePixelShader(L"res/shaders/PixelShader.hlsl", "psmain", &shaderByteCode, &sizeShader);
+	GraphicsEngine::get()->getRenderSystem()->compilePixelShader(L"resources/shaders/PixelShader.hlsl", "psmain", &shaderByteCode, &sizeShader);
 	m_ps = GraphicsEngine::get()->getRenderSystem()->createPixelShader(shaderByteCode, sizeShader);
 	GraphicsEngine::get()->getRenderSystem()->releaseCompiledShader();
 
