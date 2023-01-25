@@ -9,9 +9,6 @@
 class GraphicsEngine
 {
 public:
-	GraphicsEngine();
-	~GraphicsEngine();
-
 	RenderSystem* getRenderSystem();
 	TextureManager* getTextureManager();
 
@@ -21,6 +18,9 @@ public:
 	static void release();
 
 private:
+	GraphicsEngine();
+	~GraphicsEngine();
+
 	RenderSystem* m_renderSystem = nullptr;
 	TextureManager* m_textureManager = nullptr;
 	static GraphicsEngine* m_engine;

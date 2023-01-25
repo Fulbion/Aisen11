@@ -1,16 +1,33 @@
 #include "App/AppWindow.hpp"
+#include "Engine/Input/InputSystem.hpp"
 
 int main()
 {
-	AppWindow app;
-	
-	if (app.init())
+	try
 	{
-		while (app.isRunning())
+		GraphicsEngine::create();
+		InputSystem::create();
+	}
+
+	catch (const std::exception& e)
+	{
+		return EXIT_FAILURE;
+	}
+
+	{
+		AppWindow app;
+
+		if (app.init())
 		{
-			app.broadcast();
+			while (app.isRunning())
+			{
+				app.broadcast();
+			}
 		}
 	}
+
+	GraphicsEngine::release();
+	InputSystem::release();
 
 	return EXIT_SUCCESS;
 }

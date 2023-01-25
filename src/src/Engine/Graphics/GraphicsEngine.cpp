@@ -12,13 +12,14 @@ GraphicsEngine::GraphicsEngine()
 
 GraphicsEngine::~GraphicsEngine()
 {
+	GraphicsEngine::m_engine = nullptr;
 	delete m_textureManager;
 	delete m_renderSystem;
 }
 
 void GraphicsEngine::create()
 {
-	if (!GraphicsEngine::m_engine) return;
+	if (GraphicsEngine::m_engine) return;
 	GraphicsEngine::m_engine = new GraphicsEngine();
 }
 
@@ -40,6 +41,5 @@ TextureManager* GraphicsEngine::getTextureManager()
 
 GraphicsEngine* GraphicsEngine::get()
 {
-	static GraphicsEngine engine;
-	return &engine;
+	return m_engine;
 }

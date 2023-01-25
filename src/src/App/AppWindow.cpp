@@ -191,7 +191,6 @@ void AppWindow::onDestroy()
 	// delete m_swapChain;
 	// delete m_vs;
 	// delete m_ps;
-	GraphicsEngine::get()->release();
 }
 
 void AppWindow::onFocus()

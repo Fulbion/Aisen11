@@ -1,5 +1,6 @@
 #pragma once
 
+#include <set>
 #include <unordered_set>
 #include <Windows.h>
 
@@ -8,9 +9,6 @@
 class InputSystem
 {
 public:
-	InputSystem();
-	~InputSystem();
-
 	void update();
 	void addListener(InputListener* listener);
 	void removeListener(InputListener* listener);
@@ -19,8 +17,15 @@ public:
 	void showCursor(bool show);
 
 	static InputSystem* get();
+	static void create();
+	static void release();
 
 private:
+	InputSystem();
+	~InputSystem();
+
+	static InputSystem* m_system;
+
 	std::unordered_set<InputListener*> m_setListeners;
 	BYTE m_keysState[256] = {};
 	BYTE m_oldKeysState[256] = {};
