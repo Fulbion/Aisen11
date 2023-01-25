@@ -1,16 +1,2 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: Le répertoire intermédiaire (C:\Users\Fulbion\source\repos\3D Engine\Aisen\build\x64\Debug\) contient des fichiers partagés provenant d'un autre projet (Fulgine 11.vcxproj). Cela peut entraîner un comportement de nettoyage et de regénération incorrect.
-  InputSystem.cpp
-  main.cpp
-C:\Users\Fulbion\source\repos\3D Engine\Aisen\src\src\main.cpp(12,31): warning C4101: 'e' : variable locale non référencée
-  Génération de code en cours...
-DirectXTexD.lib(DirectXTexImage.obj) : warning LNK4099: PDB '' n'a pu être trouvé avec 'DirectXTexD.lib(DirectXTexImage.obj)' ou sur '' ; l'objet sera lié sans informations de débogage
-DirectXTexD.lib(DirectXTexWIC.obj) : warning LNK4099: PDB '' n'a pu être trouvé avec 'DirectXTexD.lib(DirectXTexWIC.obj)' ou sur '' ; l'objet sera lié sans informations de débogage
-DirectXTexD.lib(DirectXTexD3D11.obj) : warning LNK4099: PDB '' n'a pu être trouvé avec 'DirectXTexD.lib(DirectXTexD3D11.obj)' ou sur '' ; l'objet sera lié sans informations de débogage
-DirectXTexD.lib(DirectXTexUtil.obj) : warning LNK4099: PDB '' n'a pu être trouvé avec 'DirectXTexD.lib(DirectXTexUtil.obj)' ou sur '' ; l'objet sera lié sans informations de débogage
-DirectXTexD.lib(DirectXTexConvert.obj) : warning LNK4099: PDB '' n'a pu être trouvé avec 'DirectXTexD.lib(DirectXTexConvert.obj)' ou sur '' ; l'objet sera lié sans informations de débogage
-DirectXTexD.lib(DirectXTexMipMaps.obj) : warning LNK4099: PDB '' n'a pu être trouvé avec 'DirectXTexD.lib(DirectXTexMipMaps.obj)' ou sur '' ; l'objet sera lié sans informations de débogage
-DirectXTexD.lib(DirectXTexCompress.obj) : warning LNK4099: PDB '' n'a pu être trouvé avec 'DirectXTexD.lib(DirectXTexCompress.obj)' ou sur '' ; l'objet sera lié sans informations de débogage
-DirectXTexD.lib(BC.obj) : warning LNK4099: PDB '' n'a pu être trouvé avec 'DirectXTexD.lib(BC.obj)' ou sur '' ; l'objet sera lié sans informations de débogage
-DirectXTexD.lib(BC4BC5.obj) : warning LNK4099: PDB '' n'a pu être trouvé avec 'DirectXTexD.lib(BC4BC5.obj)' ou sur '' ; l'objet sera lié sans informations de débogage
-DirectXTexD.lib(BC6HBC7.obj) : warning LNK4099: PDB '' n'a pu être trouvé avec 'DirectXTexD.lib(BC6HBC7.obj)' ou sur '' ; l'objet sera lié sans informations de débogage
   Aisen 11.vcxproj -> C:\Users\Fulbion\source\repos\3D Engine\Aisen\bin\x64\Debug\Aisen 11.exe

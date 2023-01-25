@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Windows.h>
+#include <stdexcept>
 
 class Window
 {
@@ -8,14 +9,10 @@ public:
 	Window();
 	~Window();
 
-	bool init();
-	bool broadcast();
-	bool release();
-
 	bool isRunning();
 
 	RECT getClientWindowRect();
-	void setHWND(HWND hwnd);
+	// void setHWND(HWND hwnd);
 
 	virtual void onCreate() {};
 	virtual void onUpdate() {};
@@ -26,4 +23,8 @@ public:
 protected:
 	HWND m_hwnd;
 	bool m_isRunning;
+	bool m_isInitialized = false;
+
+private:
+	bool broadcast();
 };

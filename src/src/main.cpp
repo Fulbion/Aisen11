@@ -3,31 +3,27 @@
 
 int main()
 {
+	GraphicsEngine::create();
+	InputSystem::create();
+
 	try
 	{
-		GraphicsEngine::create();
-		InputSystem::create();
+		AppWindow app;
+
+		while (app.isRunning())
+		{
+		}
 	}
 
 	catch (const std::exception& e)
 	{
+		InputSystem::release();
+		GraphicsEngine::release();
 		return EXIT_FAILURE;
 	}
 
-	{
-		AppWindow app;
-
-		if (app.init())
-		{
-			while (app.isRunning())
-			{
-				app.broadcast();
-			}
-		}
-	}
-
-	GraphicsEngine::release();
 	InputSystem::release();
+	GraphicsEngine::release();
 
 	return EXIT_SUCCESS;
 }

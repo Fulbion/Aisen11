@@ -6,17 +6,14 @@ LRESULT __stdcall WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
     {
     case WM_CREATE:
     {
-        Window* window = (Window*)((LPCREATESTRUCT)lParam)->lpCreateParams;
-        SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)window);
-        window->setHWND(hwnd);
-        window->onCreate();
+        
         break;
     }
 
     case WM_SETFOCUS:
     {
         Window* window = (Window*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
-        window->onFocus();
+        if (window) window->onFocus();
         break;
     }
 
@@ -44,14 +41,6 @@ LRESULT __stdcall WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
 Window::Window()
 {
-}
-
-Window::~Window()
-{
-}
-
-bool Window::init()
-{
     const wchar_t CLASS_NAME[] = L"Aisen";
 
     WNDCLASSEX wc = { };
@@ -69,7 +58,7 @@ bool Window::init()
     wc.style = NULL;
 
     if (!RegisterClassEx(&wc))
-        return false;
+        throw std::exception("Window failed to initialize.");
 
     RECT rc = { 0, 0, 1600, 900 };
     AdjustWindowRect(&rc, WS_TILEDWINDOW, false);
@@ -85,23 +74,34 @@ bool Window::init()
         NULL,
         NULL,
         NULL,
-        this
+        NULL
     );
 
     if (!m_hwnd)
-        return false;
+        throw std::exception("Window failed to initialize.");
 
     ShowWindow(m_hwnd, SW_SHOW);
     UpdateWindow(m_hwnd);
 
     m_isRunning = true;
+}
 
-	return true;
+Window::~Window()
+{
+    if (!DestroyWindow(m_hwnd))if (!DestroyWindow(m_hwnd))
+        throw std::exception("Window failed to destroy.");
 }
 
 bool Window::broadcast()
 {
     MSG msg;
+
+    if (!this->m_isInitialized)
+    {
+        SetWindowLongPtr(m_hwnd, GWLP_USERDATA, (LONG_PTR)this);
+        this->onCreate();
+        this->m_isInitialized = true;
+    }
 
     this->onUpdate();
     while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE) > 0)
@@ -115,16 +115,10 @@ bool Window::broadcast()
     return true;
 }
 
-bool Window::release()
-{
-    if (!DestroyWindow(m_hwnd))
-        return false;
-        
-	return true;
-}
-
 bool Window::isRunning()
 {
+    if (m_isRunning)
+        broadcast();
     return m_isRunning;
 }
 
@@ -135,10 +129,10 @@ RECT Window::getClientWindowRect()
     return rc;
 }
 
-void Window::setHWND(HWND hwnd)
-{
-    this->m_hwnd = hwnd;
-}
+// void Window::setHWND(HWND hwnd)
+// {
+//     this->m_hwnd = hwnd;
+// }
 
 void Window::onDestroy()
 {
