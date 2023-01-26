@@ -1,6 +1,7 @@
 #include <DirectXTex.h>
 
 #include "Engine/Graphics/ResourceManager/TextureManager/Texture.hpp"
+#include "Engine/Graphics/RenderSystem/DeviceContext/DeviceContext.hpp"
 #include "Engine/Graphics/GraphicsEngine.hpp"
 
 Texture::Texture(const wchar_t* fullPath) :
@@ -12,6 +13,14 @@ Texture::Texture(const wchar_t* fullPath) :
 	if (SUCCEEDED(hr))
 	{
 		hr = DirectX::CreateTexture(GraphicsEngine::get()->getRenderSystem()->m_d3dDevice, imageData.GetImages(), imageData.GetImageCount(), imageData.GetMetadata(), &m_texture);
+		
+		D3D11_SHADER_RESOURCE_VIEW_DESC desc = {};
+		desc.Format = imageData.GetMetadata().format;
+		desc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
+		desc.Texture2D.MipLevels = imageData.GetMetadata().mipLevels;
+		desc.Texture2D.MostDetailedMip = 0;
+
+		GraphicsEngine::get()->getRenderSystem()->m_d3dDevice->CreateShaderResourceView(m_texture, &desc, &m_shaderResourceView);
 	}
 
 	else
@@ -22,4 +31,5 @@ Texture::Texture(const wchar_t* fullPath) :
 
 Texture::~Texture()
 {
+	m_texture->Release();
 }

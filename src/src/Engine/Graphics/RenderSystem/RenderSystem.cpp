@@ -13,14 +13,6 @@
 
 RenderSystem::RenderSystem()
 {
-}
-
-RenderSystem::~RenderSystem()
-{
-}
-
-bool RenderSystem::init()
-{
 	D3D_DRIVER_TYPE driverTypes[] =
 	{
 		D3D_DRIVER_TYPE_HARDWARE,
@@ -49,7 +41,7 @@ bool RenderSystem::init()
 
 	if (FAILED(hr))
 	{
-		return false;
+		throw std::exception("RenderSystem failed to initialize");
 	}
 
 	m_immDeviceContext = std::make_shared<DeviceContext>(m_immContext, this);
@@ -57,11 +49,9 @@ bool RenderSystem::init()
 	m_d3dDevice->QueryInterface(__uuidof(IDXGIDevice), (void**)&m_dxgiDevice);
 	m_dxgiDevice->GetParent(__uuidof(IDXGIAdapter), (void**)&m_dxgiAdapter);
 	m_dxgiAdapter->GetParent(__uuidof(IDXGIFactory), (void**)&m_dxgiFactory);
-
-	return true;
 }
 
-bool RenderSystem::release()
+RenderSystem::~RenderSystem()
 {
 	if (m_vs) m_vs->Release();
 	if (m_ps) m_ps->Release();
@@ -74,7 +64,6 @@ bool RenderSystem::release()
 	m_dxgiFactory->Release();
 
 	m_d3dDevice->Release();
-	return true;
 }
 
 SwapChainPtr RenderSystem::createSwapChain(HWND hwnd, UINT width, UINT height)
@@ -184,17 +173,17 @@ PixelShaderPtr RenderSystem::createPixelShader(const void* shaderByteCode, size_
 	return ps;
 }
 
-bool RenderSystem::compileVertexShader(const wchar_t* file_name, const char* entry_point_name, void** shader_byte_code, size_t* byte_code_size)
+bool RenderSystem::compileVertexShader(const wchar_t* fileName, const char* entryPointName, void** shaderByte_code, size_t* byteCodeSize)
 {
-	ID3DBlob* error_blob = nullptr;
-	if (!SUCCEEDED(D3DCompileFromFile(file_name, nullptr, nullptr, entry_point_name, "vs_5_0", 0, 0, &m_blob, &error_blob)))
+	ID3DBlob* errorBlob = nullptr;
+	if (!SUCCEEDED(D3DCompileFromFile(fileName, nullptr, nullptr, entryPointName, "vs_5_0", 0, 0, &m_blob, &errorBlob)))
 	{
-		if (error_blob) error_blob->Release();
+		if (errorBlob) errorBlob->Release();
 		return false;
 	}
 
-	*shader_byte_code = m_blob->GetBufferPointer();
-	*byte_code_size = m_blob->GetBufferSize();
+	*shaderByte_code = m_blob->GetBufferPointer();
+	*byteCodeSize = m_blob->GetBufferSize();
 
 	return true;
 }

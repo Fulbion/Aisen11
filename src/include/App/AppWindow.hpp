@@ -54,6 +54,7 @@ private:
 	ConstantBufferPtr m_cb;
 	VertexShaderPtr m_vs;
 	PixelShaderPtr m_ps;
+	TexturePtr m_testTexture;
 	
 	float m_oldTime = 0;
 	float m_newTime = 0;

@@ -4,8 +4,7 @@
 struct Vertex
 {
 	float3 position;
-	float3 color;
-	float3 color1;
+	float2 texcoord;
 };
 
 __declspec(align(16))
@@ -86,24 +85,65 @@ void AppWindow::onCreate()
 	InputSystem::get()->addListener(this);
 	InputSystem::get()->showCursor(false);
 	
-	TexturePtr m_brickTexture = GraphicsEngine::get()->getTextureManager()->createTextureFromFile(L"resources/images/textures/brick.png");
+	m_testTexture = GraphicsEngine::get()->getTextureManager()->createTextureFromFile(L"resources/images/textures/test.png");
 
 	RECT rc = this->getClientWindowRect();
 	m_swapChain = GraphicsEngine::get()->getRenderSystem()->createSwapChain(this->m_hwnd, rc.right - rc.left, rc.bottom - rc.top);
 
 	m_worldCamera.translate(Vector3f(0, 0, -2));
 
+	float3 positionList[] =
+	{
+		float3(-0.5f, -0.5f, -0.5f),
+		float3(-0.5f, 0.5f, -0.5f),
+		float3(0.5f, 0.5f, -0.5f),
+		float3(0.5f, -0.5f, -0.5f),
+
+		float3(0.5f, -0.5f, 0.5f),
+		float3(0.5f, 0.5f, 0.5f),
+		float3(-0.5f, 0.5f, 0.5f),
+		float3(-0.5f, -0.5f, 0.5f)
+	};
+
+	float2 texcoordList[] =
+	{
+		float2(0, 0),
+		float2(0, 1),
+		float2(1, 0),
+		float2(1, 1),
+	};
+
 	Vertex vertexList[] =
 	{
-		{ float3(-0.5f, -0.5f, -0.5f),  float3(1, 1, 0),  float3(0.33f, 0.33f, 0) },
-		{ float3(-0.5f, 0.5f, -0.5f),   float3(0, 1, 1),  float3(0, 0.33f, 0.33f) },
-		{ float3(0.5f, 0.5f, -0.5f),    float3(1, 0, 1),  float3(0.33f, 0, 0.33f) },
-		{ float3(0.5f, -0.5f, -0.5f),   float3(1, 1, 1),  float3(0.33f, 0.33f, 0.33f) },
-		
-		{ float3(0.5f, -0.5f, 0.5f),    float3(1, 1, 0),  float3(0.33f, 0.33f, 0) },
-		{ float3(0.5f, 0.5f, 0.5f),     float3(0, 1, 1),  float3(0, 0.33f, 0.33f) },
-		{ float3(-0.5f, 0.5f, 0.5f),    float3(1, 0, 1),  float3(0.33f, 0, 0.33f) },
-		{ float3(-0.5f, -0.5f, 0.5f),   float3(1, 1, 1),  float3(0.33f, 0.33f, 0.33f) }
+		{ positionList[0], texcoordList[1] },
+		{ positionList[1], texcoordList[0] },
+		{ positionList[2], texcoordList[2] },
+		{ positionList[3], texcoordList[3] },
+
+		{ positionList[4], texcoordList[1] },
+		{ positionList[5], texcoordList[0] },
+		{ positionList[6], texcoordList[2] },
+		{ positionList[7], texcoordList[3] },
+
+		{ positionList[1], texcoordList[1] },
+		{ positionList[6], texcoordList[0] },
+		{ positionList[5], texcoordList[2] },
+		{ positionList[2], texcoordList[3] },
+
+		{ positionList[7], texcoordList[1] },
+		{ positionList[0], texcoordList[0] },
+		{ positionList[3], texcoordList[2] },
+		{ positionList[4], texcoordList[3] },
+
+		{ positionList[3], texcoordList[1] },
+		{ positionList[2], texcoordList[0] },
+		{ positionList[5], texcoordList[2] },
+		{ positionList[4], texcoordList[3] },
+
+		{ positionList[7], texcoordList[1] },
+		{ positionList[6], texcoordList[0] },
+		{ positionList[1], texcoordList[2] },
+		{ positionList[0], texcoordList[3] },
 	};
 
 	UINT sizeList = ARRAYSIZE(vertexList);
@@ -116,17 +156,17 @@ void AppWindow::onCreate()
 		4, 5, 6,
 		6, 7, 4,
 
-		1, 6, 5,
-		5, 2, 1,
+		8, 9, 10,
+		10, 11, 8,
 
-		7, 0, 3,
-		3, 4, 7,
+		12, 13, 14,
+		14, 15, 12,
 
-		3, 2, 5,
-		5, 4, 3,
+		16, 17, 18,
+		18, 19, 16,
 
-		7, 6, 1,
-		1, 0, 7
+		20, 21, 22,
+		22, 23, 20
 	};
 
 	UINT sizeIndexList = ARRAYSIZE(indexList);
@@ -169,6 +209,8 @@ void AppWindow::onUpdate()
 
 	GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->setVertexShader(m_vs);
 	GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->setPixelShader(m_ps);
+
+	GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->setTexture(m_ps, m_testTexture);
 
 	GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->setVertexBuffer(m_vb);
 	GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->setIndexBuffer(m_ib);

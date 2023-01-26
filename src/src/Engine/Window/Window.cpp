@@ -88,8 +88,8 @@ Window::Window()
 
 Window::~Window()
 {
-    if (!DestroyWindow(m_hwnd))if (!DestroyWindow(m_hwnd))
-        throw std::exception("Window failed to destroy.");
+    // if (!DestroyWindow(m_hwnd))
+    //     throw std::exception("Window failed to destroy.");
 }
 
 bool Window::broadcast()
