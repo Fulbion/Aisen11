@@ -56,8 +56,8 @@ private:
 	PixelShaderPtr m_ps;
 	TexturePtr m_testTexture;
 	
-	float m_oldTime = 0;
-	float m_newTime = 0;
+	float m_oldDelta = 0;
+	float m_newDelta = 0;
 	float m_deltaTime = 0;
 
 	float m_deltaPos = 0;

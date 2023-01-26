@@ -19,7 +19,7 @@ GraphicsEngine::~GraphicsEngine()
 
 void GraphicsEngine::create()
 {
-	if (GraphicsEngine::m_engine) return;
+	if (GraphicsEngine::m_engine) throw std::exception("Graphics Engine already created");
 	GraphicsEngine::m_engine = new GraphicsEngine();
 }
 
@@ -27,6 +27,11 @@ void GraphicsEngine::release()
 {
 	if (!GraphicsEngine::m_engine) return;
 	delete GraphicsEngine::m_engine;
+}
+
+GraphicsEngine* GraphicsEngine::get()
+{
+	return m_engine;
 }
 
 RenderSystem* GraphicsEngine::getRenderSystem()
@@ -37,9 +42,4 @@ RenderSystem* GraphicsEngine::getRenderSystem()
 TextureManager* GraphicsEngine::getTextureManager()
 {
 	return m_textureManager;
-}
-
-GraphicsEngine* GraphicsEngine::get()
-{
-	return m_engine;
 }

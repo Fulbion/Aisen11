@@ -39,22 +39,22 @@ void DeviceContext::setIndexBuffer(const IndexBufferPtr& indexBuffer)
 	m_deviceContext->IASetIndexBuffer(indexBuffer->m_buffer, DXGI_FORMAT_R32_UINT, 0);
 }
 
-void DeviceContext::drawTriangleList(UINT vertexCount, UINT startVertexIndex)
+void DeviceContext::drawTriangleList(UINT vertex_count, UINT start_vertex_index)
 {
 	m_deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-	m_deviceContext->Draw(vertexCount, startVertexIndex);
+	m_deviceContext->Draw(vertex_count, start_vertex_index);
 }
 
-void DeviceContext::drawIndexedTriangleList(UINT indexCount, UINT startVertexIndex, UINT startIndexLocation)
+void DeviceContext::drawIndexedTriangleList(UINT index_count, UINT start_vertex_index, UINT start_index_location)
 {
 	m_deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-	m_deviceContext->DrawIndexed(indexCount, startIndexLocation, startVertexIndex);
+	m_deviceContext->DrawIndexed(index_count, start_index_location, start_vertex_index);
 }
 
-void DeviceContext::drawTriangleStrip(UINT vertexCount, UINT startVertexIndex)
+void DeviceContext::drawTriangleStrip(UINT vertex_count, UINT start_vertex_index)
 {
 	m_deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
-	m_deviceContext->Draw(vertexCount, startVertexIndex);
+	m_deviceContext->Draw(vertex_count, start_vertex_index);
 }
 
 void DeviceContext::setViewportSize(UINT width, UINT height)
@@ -96,4 +96,3 @@ void DeviceContext::setConstantBuffer(const PixelShaderPtr& pixelShader, const C
 {
 	m_deviceContext->PSSetConstantBuffers(0, 1, &buffer->m_buffer);
 }
-
