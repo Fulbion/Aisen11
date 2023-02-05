@@ -23,7 +23,7 @@ ResourcePtr ResourceManager::createResourceFromFile(const wchar_t* filePath)
 
 	if (rawResource)
 	{
-		ResourcePtr resource;
+		ResourcePtr resource(rawResource);
 		m_resources[fullPath] = resource;
 		return resource;
 	}

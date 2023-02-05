@@ -29,5 +29,5 @@ Resource* TextureManager::createResourceFromFileConcrete(const wchar_t* filePath
 
 	}
 
-	return nullptr;
+	return texture;
 }
